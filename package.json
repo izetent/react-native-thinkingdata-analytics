@@ -47,14 +47,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Mahuoooo/react-native-thinkingdata-analytics.git"
+    "url": "git+https://github.com/izetent/react-native-thinkingdata-analytics.git"
   },
-  "author": "izetent <izetent@gmail.com> (https://github.com/Mahuoooo)",
+  "author": "izetent <izetent@gmail.com> (https://github.com/izetent)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Mahuoooo/react-native-thinkingdata-analytics/issues"
+    "url": "https://github.com/izetent/react-native-thinkingdata-analytics/issues"
   },
-  "homepage": "https://github.com/Mahuoooo/react-native-thinkingdata-analytics#readme",
+  "homepage": "https://github.com/izetent/react-native-thinkingdata-analytics#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
