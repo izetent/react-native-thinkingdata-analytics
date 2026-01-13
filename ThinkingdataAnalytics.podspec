@@ -11,10 +11,15 @@ Pod::Spec.new do |s|
   s.authors      = package["author"]
 
   s.platforms    = { :ios => min_ios_version_supported }
+  s.swift_version = "5.0"
   s.source       = { :git => "https://github.com/Mahuoooo/react-native-thinkingdata-analytics.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift,cpp}"
   s.private_header_files = "ios/**/*.h"
+
+  # Native SDK dependencies (align with Android versions)
+  s.dependency "ThinkingSDK", '3.1.1'
+  s.dependency "TAThirdParty", '0.3.5'
 
   install_modules_dependencies(s)
 end

@@ -4,6 +4,7 @@
     "paths": {
       "react-native-thinkingdata-analytics": ["./src/index"]
     },
+    "allowJs": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "customConditions": ["react-native-strict-api"],

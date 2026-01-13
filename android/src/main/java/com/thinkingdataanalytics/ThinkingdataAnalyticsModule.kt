@@ -11,8 +11,8 @@ class ThinkingdataAnalyticsModule(reactContext: ReactApplicationContext) :
     return NAME
   }
 
-  // Example method
-  // See https://reactnative.dev/docs/native-modules-android
+  // 示例方法
+  // 参考 https://reactnative.dev/docs/native-modules-android
   override fun multiply(a: Double, b: Double): Double {
     return a * b
   }

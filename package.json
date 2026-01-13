@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "description": "数数埋点",
   "main": "./lib/module/index.js",
-  "types": "./lib/typescript/src/index.d.ts",
+  "types": "./src/TDAnalytics.d.ts",
   "exports": {
     ".": {
       "source": "./src/index.tsx",
-      "types": "./lib/typescript/src/index.d.ts",
+      "types": "./src/TDAnalytics.d.ts",
       "default": "./lib/module/index.js"
     },
     "./package.json": "./package.json"
