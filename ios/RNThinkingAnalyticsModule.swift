@@ -430,7 +430,12 @@ class RNThinkingAnalyticsModule: NSObject, RCTBridgeModule {
     @objc(getDeviceId:resolver:rejecter:)
     func getDeviceId(_ options: NSDictionary, resolver: RCTPromiseResolveBlock, rejecter: RCTPromiseRejectBlock) {
         do {
-            resolver(TDAnalytics.getDeviceId())
+            let appId = options["appId"] as? String
+            if let appId = appId, !appId.isEmpty {
+                resolver(TDAnalytics.getDeviceId(withAppId: appId))
+            } else {
+                resolver(TDAnalytics.getDeviceId())
+            }
         } catch {
             resolver(nil)
         }

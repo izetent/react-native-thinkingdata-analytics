@@ -1,5 +1,9 @@
-
-import thinkingdata, { AutoTrackEventType, TAThirdPartyShareType, TATrackStatus } from "./ThinkingAnalyticsAPI";
+// @ts-nocheck
+import thinkingdata, {
+  AutoTrackEventType,
+  TAThirdPartyShareType,
+  TATrackStatus,
+} from './ThinkingAnalyticsAPI';
 
 const TDMode = {
     NORMAL: 'normal',
@@ -67,25 +71,6 @@ class TDAnalytics {
     }
 
     /**
-     * 初始化 SDK，未调用前不可埋点
-     * @param {String} appId 必填，应用 ID
-     * @param {String} serverUrl 必填，采集地址
-     */
-    static init(appId, serverUrl) {
-        var config = {
-            appId: appId,
-            serverUrl: serverUrl
-        }
-        if (Object.keys(this.instances).length == 0) {
-            thinkingdata.init(config);
-            this.instances[appId] = thinkingdata;
-        } else {
-            var instance = thinkingdata.initInstance(config);
-            this.instances[appId] = instance;
-        }
-    }
-
-    /**
      * 通过配置初始化 SDK，未调用前不可埋点
      * @param {Object} config 初始化配置
      * 
@@ -96,15 +81,25 @@ class TDAnalytics {
      * @property {boolean} enableLog 可选，是否打印日志
      * @property {String} timeZone 可选，默认时区
      */
-    static init(config = {}) {
-        if (config['appid']) {
+    static init(appIdOrConfig, serverUrl) {
+        let config = {};
+        if (typeof appIdOrConfig === 'string') {
+            config.appId = appIdOrConfig;
+            config.serverUrl = serverUrl;
+        } else {
+            config = { ...(appIdOrConfig || {}) };
+        }
+        if (config['appid'] && !config['appId']) {
             config['appId'] = config['appid'];
         }
-        if (Object.keys(this.instances).length == 0) {
+        if (!config.appId || !config.serverUrl) {
+            return;
+        }
+        if (Object.keys(this.instances).length === 0) {
             thinkingdata.init(config);
             this.instances[config.appId] = thinkingdata;
         } else {
-            var instance = thinkingdata.initInstance(config);
+            const instance = thinkingdata.initInstance(config);
             this.instances[config.appId] = instance;
         }
     }
@@ -540,7 +535,10 @@ class TDAnalytics {
         let type = dataInfo['#type'];
         const eventName = dataInfo['#event_name'];
         const time = dataInfo['#time'];
-        let properties = dataInfo['properties'];
+        let properties = dataInfo['properties'] || {};
+        if (typeof properties !== 'object' || properties === null) {
+            properties = {};
+        }
 
         let extraID;
         if (type === TDEventType.Track) {
@@ -649,6 +647,9 @@ class TDAnalytics {
     }
 
     static _cleanProperties(properties) {
+        if (!properties || typeof properties !== 'object') {
+            return {};
+        }
         const keysToRemove = ['#account_id', '#distinct_id', '#device_id', '#lib', '#lib_version', '#screen_height', '#screen_width'];
         keysToRemove.forEach(key => delete properties[key]);
         return properties;

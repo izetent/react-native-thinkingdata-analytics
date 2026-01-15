@@ -29,22 +29,9 @@ export namespace TDThirdPartyType {
 }
 
 type TDModeType = typeof TDMode.NORMAL | typeof TDMode.DEBUG | typeof TDMode.DEBUG_ONLY;
-type TDThirdPartyMode =
-    | typeof TDThirdPartyType.APPS_FLYER
-    | typeof TDThirdPartyType.ADJUST
-    | typeof TDThirdPartyType.BRANCH
-    | typeof TDThirdPartyType.IRON_SOURCE
-    | typeof TDThirdPartyType.TOP_ON
-    | typeof TDThirdPartyType.TRACKING
-    | typeof TDThirdPartyType.TRAD_PLUS;
+type TDThirdPartyMode = number; // 位掩码组合
 
-type TDAutoTrackEventMode =
-    | typeof TDAutoTrackEventType.APP_START
-    | typeof TDAutoTrackEventType.APP_END
-    | typeof TDAutoTrackEventType.APP_INSTALL
-    | typeof TDAutoTrackEventType.APP_CRASH
-    | typeof TDAutoTrackEventType.APP_CLICK
-    | typeof TDAutoTrackEventType.APP_VIEW_SCREEN;
+type TDAutoTrackEventMode = number; // 位掩码组合
 type TDTrackStatusMode = typeof TDTrackStatus.NORMAL | typeof TDTrackStatus.STOP | typeof TDTrackStatus.SAVE_ONLY | typeof TDTrackStatus.PAUSE
 
 interface TDConfig {
